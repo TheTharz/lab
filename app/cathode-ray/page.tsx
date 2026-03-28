@@ -20,7 +20,7 @@ export default function CathodeRaySimulationPage() {
                         <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)]">
                             <Beaker className="w-5 h-5 text-white" />
                         </div>
-                        <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                        <h1 className="text-xl font-bold tracking-tight text-white">
                             Virtual Lab: Cathode Ray Experiment
                         </h1>
                     </div>
