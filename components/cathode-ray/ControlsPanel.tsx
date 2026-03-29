@@ -1,5 +1,5 @@
 import React from 'react';
-import { Settings, Zap, Compass, Wind, Layers, Aperture } from 'lucide-react';
+import { Settings, Zap, Wind, Layers } from 'lucide-react';
 
 interface ControlsPanelProps {
     voltage: number;
@@ -8,10 +8,6 @@ interface ControlsPanelProps {
     setPressure: (p: number) => void;
     electricField: number;
     setElectricField: (e: number) => void;
-    magneticField: number;
-    setMagneticField: (m: number) => void;
-    magneticDirection: 'in' | 'out';
-    setMagneticDirection: (d: 'in' | 'out') => void;
     showMalteseCross: boolean;
     setShowMalteseCross: (s: boolean) => void;
     showFluorescentScreen: boolean;
@@ -24,8 +20,6 @@ export function ControlsPanel({
     voltage, setVoltage,
     pressure, setPressure,
     electricField, setElectricField,
-    magneticField, setMagneticField,
-    magneticDirection, setMagneticDirection,
     showMalteseCross, setShowMalteseCross,
     showFluorescentScreen, setShowFluorescentScreen,
     showTarget, setShowTarget,
@@ -87,26 +81,6 @@ export function ControlsPanel({
                     </div>
                 </div>
 
-                {/* Magnetic Field Slider */}
-                <div className="space-y-1">
-                    <div className="flex justify-between text-sm">
-                        <span className="flex items-center space-x-1"><Compass className="w-4 h-4 text-green-400" /> <span>Magnetic Field</span></span>
-                        <span className="font-mono text-green-400">{magneticField} units</span>
-                    </div>
-                    <input
-                        type="range" min="0" max="100" step="1"
-                        value={magneticField} onChange={(e) => setMagneticField(Number(e.target.value))}
-                        className="w-full accent-green-400"
-                    />
-                    <div className="flex justify-end mt-1">
-                        <button
-                            onClick={() => setMagneticDirection(magneticDirection === 'in' ? 'out' : 'in')}
-                            className="text-xs bg-gray-800 px-2 py-1 rounded border border-gray-700 hover:bg-gray-700 transition"
-                        >
-                            Direction: {magneticDirection === 'in' ? 'Into Screen (⊗)' : 'Out of Screen (⊙)'}
-                        </button>
-                    </div>
-                </div>
             </div>
 
             <hr className="border-gray-800" />

@@ -13,8 +13,6 @@ export function usePhysicsEngine() {
   const [voltage, setVoltage] = useState(0); // 0 to 10000 V
   const [pressure, setPressure] = useState(1.0); // 1.0 (atm) to 0.001 (atm)
   const [electricField, setElectricField] = useState(0); // 0 to 100 (arbitrary units)
-  const [magneticField, setMagneticField] = useState(0); // 0 to 100 (arbitrary units)
-  const [magneticDirection, setMagneticDirection] = useState<'in' | 'out'>('in');
   
   // Toggles
   const [showMalteseCross, setShowMalteseCross] = useState(false);
@@ -55,26 +53,15 @@ export function usePhysicsEngine() {
     
     // Electrons are negatively charged, so they deflect opposite to E-field direction (towards + plate)
     const eDeflection = -(electricField / 100) * 100; // max 100px deflection
-    
-    // Magnetic field forces (Lorentz F = q(v x B))
-    // Assuming beam is in +X direction. v = (v_x, 0, 0)
-    // If B is 'in' (-Z direction), v x B is in +Y direction. electron q is negative, so F is in -Y direction.
-    // If B is 'out' (+Z direction), F is in +Y direction.
-    const mForceDirection = magneticDirection === 'out' ? 1 : -1;
-    // Magnitude depends on v and B. Normalizing for visual scale:
-    const vFactor = Math.min(1, electronSpeed / 6e7);
-    const mDeflection = mForceDirection * (magneticField / 100) * 150 * vFactor; 
-    
-    return eDeflection + mDeflection; // Final visual Y offset
-  }, [stage, electricField, magneticField, magneticDirection, electronSpeed]);
+
+    return eDeflection; // Final visual Y offset
+  }, [stage, electricField]);
 
   return {
     // State
     voltage, setVoltage,
     pressure, setPressure,
     electricField, setElectricField,
-    magneticField, setMagneticField,
-    magneticDirection, setMagneticDirection,
     showMalteseCross, setShowMalteseCross,
     showFluorescentScreen, setShowFluorescentScreen,
     showTarget, setShowTarget,

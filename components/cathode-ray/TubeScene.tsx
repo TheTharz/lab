@@ -13,13 +13,12 @@ interface TubeSceneProps {
     showTarget: boolean;
     targetTemperature: number;
     electricField: number;
-    magneticField: number;
 }
 
 export function TubeScene({
     stage, voltage, pressure, electronSpeed, beamIntensity, deflectionY,
     showMalteseCross, showFluorescentScreen, showTarget, targetTemperature,
-    electricField, magneticField
+    electricField
 }: TubeSceneProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -171,12 +170,6 @@ export function TubeScene({
                     <div className={`w-[50%] mx-auto h-3 ${electricField < 0 ? 'bg-red-500/80 shadow-[0_0_20px_rgba(239,68,68,0.8)]' : 'bg-blue-500/80 shadow-[0_0_20px_rgba(59,130,246,0.8)]'} rounded-full`} />
                 </div>
             )}
-            {magneticField > 0 && (
-                <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-30">
-                    <div className="w-[50%] h-[200px] border-4 border-emerald-500 rounded-full border-dashed animate-[spin_20s_linear_infinite] opacity-50 shadow-[0_0_30px_rgba(16,185,129,0.3)_inset]" />
-                </div>
-            )}
-
             {/* Glass Tube Frame */}
             <div className="absolute w-[80%] h-[140px] rounded-full border-[6px] border-cyan-900/30 bg-cyan-950/20 shadow-[inset_0_0_60px_rgba(0,100,255,0.08)] flex items-center justify-between px-2 box-border relative">
                 <div className="absolute inset-0 rounded-full ring-1 ring-white/10 pointer-events-none" />

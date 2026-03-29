@@ -8,13 +8,12 @@ interface InfoPanelProps {
     pressure: number;
     showMalteseCross: boolean;
     electricField: number;
-    magneticField: number;
     showTarget: boolean;
     showFluorescentScreen: boolean;
 }
 
 export function InfoPanel({
-    stage, voltage, pressure, showMalteseCross, electricField, magneticField, showTarget, showFluorescentScreen
+    stage, voltage, pressure, showMalteseCross, electricField, showTarget, showFluorescentScreen
 }: InfoPanelProps) {
 
     const getExplanation = () => {
@@ -33,9 +32,6 @@ export function InfoPanel({
             if (electricField !== 0) {
                 const direction = electricField > 0 ? "positive" : "negative";
                 text += ` The beam is deflected towards the ${direction} plate, proving that cathode rays carry a negative electrical charge.`;
-            }
-            if (magneticField > 0) {
-                text += " The beam is curving due to the magnetic field (Lorentz force). This further confirms they are charged particles.";
             }
             if (showTarget) {
                 text += " As the electrons hit the metal target, their kinetic energy is converted to heat, making the target glow.";
