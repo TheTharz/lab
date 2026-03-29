@@ -53,8 +53,8 @@ export function usePhysicsEngine() {
   const deflectionY = useMemo(() => {
     if (stage !== 'Cathode Rays (Electron Beam)') return 0;
     
-    // Electric field bends beam towards positive plate (assume Y+ is positive plate)
-    const eDeflection = (electricField / 100) * 100; // max 100px deflection
+    // Electrons are negatively charged, so they deflect opposite to E-field direction (towards + plate)
+    const eDeflection = -(electricField / 100) * 100; // max 100px deflection
     
     // Magnetic field forces (Lorentz F = q(v x B))
     // Assuming beam is in +X direction. v = (v_x, 0, 0)
